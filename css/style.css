@@ -566,7 +566,7 @@ input[type="text"], input[type="email"], textarea {
     margin-right: 72px;
 }
 
-#CTA-end .CTA-end-container h1 {
+#CTA-end .CTA-end-container h2 {
     font-size: 2rem;
     font-weight: bold;
     color: white;
@@ -961,7 +961,7 @@ input[type="text"], input[type="email"], textarea {
         margin-right: 556px;
     }
     
-    #CTA-end .CTA-end-container h1 {
+    #CTA-end .CTA-end-container h2 {
         font-size: 3rem;
         margin-bottom: 12px;
         margin-top: 72px;
