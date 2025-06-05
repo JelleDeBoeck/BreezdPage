@@ -525,7 +525,7 @@ header {
     margin-bottom: 10px;
 }
 
-input[type="text"], input[type="email"], textarea {
+input[type="text"], input[type="email"], input[type="password"], input[type="date"], textarea {
     padding: 1rem;
     font-size: 0.75rem;
     border: 1px solid #E3E3E3;
@@ -937,7 +937,7 @@ input[type="text"], input[type="email"], textarea {
         margin-bottom: 8px;
     }
     
-    input[type="text"], input[type="email"], textarea {
+    input[type="text"], input[type="email"], input[type="password"], input[type="date"], textarea {
         padding: 1rem;
         font-size: 1rem;
     }
