@@ -55,7 +55,6 @@
     </div>
   <?php endif; ?>
 
-
   <header>
     <div class="nav-container">
       <img src="images/logo2.webp" width="84px" alt="Breezd logo" class="logo">
@@ -68,7 +67,7 @@
       </nav>
 
       <div class="desktop-only">
-        <a href="#" class="nav-button"
+        <a href="#" class="nav-button" id="inlog-button"
           onclick="openPopup('loginPopup')"
           style="<?php echo isset($_SESSION['user_id']) ? 'visibility: hidden;' : ''; ?>">
           Inloggen
@@ -96,16 +95,11 @@
         <a href="#">Tarieven</a>
         <a href="#">Contact</a>
       </nav>
-      <a href="#" class="nav-button"
-        onclick="openPopup('loginPopup')"
-        style="<?php echo isset($_SESSION['user_id']) ? 'visibility: hidden;' : ''; ?>">
-        Inloggen
-      </a>
-      <a href="#" class="nav-button"
-        onclick="openPopup('registerPopup')"
-        style="<?php echo isset($_SESSION['user_id']) ? 'visibility: hidden;' : ''; ?>">
-        Registreren
-      </a>
+<?php if (!isset($_SESSION['user_id'])): ?>
+  <a href="#" class="nav-button" onclick="openPopup('loginPopup')">Inloggen</a>
+  <a href="#" class="nav-button" onclick="openPopup('registerPopup')">Registreren</a>
+<?php endif; ?>
+
     </div>
   </header>
 
@@ -114,7 +108,7 @@
     <div class="header-container">
       <div class="header-first">
         <div class="header-text">
-          <h1>Samen naar een Vape-Vrije Toekomst</h1>
+          <h1>Samen naar een <br>Vape-Vrije Toekomst</h1>
           <p>Stop met vapen op jouw tempo dankzij Breezd: houd je dagelijkse puffs bij met de slimme armband, stel wekelijks lagere doelen, volg je voortgang in de app en vier je successen samen met vrienden via het leaderboard – motiverend, sociaal en impactvol.</p>
         </div>
         <div class="header-buttons">
@@ -135,7 +129,7 @@
       </div>
       </div>
       <div class="header-image">
-        <img src="images/iPhone_12_Mockup1.webp" alt="Image Of Homescreen" fetchpriority="high" loading="eager" >
+        <img src="images/headerimage.png" alt="Header Image" fetchpriority="high" loading="eager">
       </div>
     </div>
   </section>
@@ -170,7 +164,7 @@
     <div class="features-container">
       <div class="feature">
           <div class="feature-image">
-            <img src="images/vooruitgang.webp" alt="Image Of Progress Screen">
+            <img src="images/instructie3.png" alt="Image Of Progress Screen">
           </div>
           <div class="feature-text">
             <h2>Houd je vooruitgang in de gaten</h2>
@@ -180,7 +174,7 @@
       </div>
       <div class="feature">
           <div class="feature-image">
-            <img src="images/vrienden.webp" alt="Image Of Friends Screen">
+            <img src="images/instructie2.png" alt="Image Of Friends Screen">
           </div>
           <div class="feature-text">
             <h2>Daag je vrienden uit</h2>
@@ -190,7 +184,7 @@
       </div>
       <div class="feature">
           <div class="feature-image">
-            <img src="images/track.webp" alt="Image Of Tracking Screen">
+            <img src="images/instructie3 (1).png" alt="Image Of Tracking Screen">
           </div>
           <div class="feature-text">
             <h2>Track je dagelijkse aantal puffs</h2>

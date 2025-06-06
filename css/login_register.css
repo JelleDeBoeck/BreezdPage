@@ -35,7 +35,7 @@
 .contact-form input[type="password"],
 .contact-form textarea {
   padding: 1rem;
-  font-size: 0.75rem;
+  font-size: 1rem;
   border: 1px solid #E3E3E3;
   border-radius: 12px;
   font-weight: normal;

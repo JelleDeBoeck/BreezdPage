@@ -15,4 +15,21 @@ window.addEventListener('resize', () => {
       mobileNav.classList.remove('show');
     }
   });
-  
+
+  document.addEventListener("DOMContentLoaded", function () {
+  const hamburger = document.getElementById("hamburger");
+  const mobileNav = document.getElementById("mobileNav");
+  const closeNav = document.getElementById("closeNav");
+
+  // Open mobiel menu
+  hamburger.addEventListener("click", function () {
+    mobileNav.classList.add("show");
+    hamburger.style.display = "none";
+  });
+
+  // Sluit mobiel menu
+  closeNav.addEventListener("click", function () {
+    mobileNav.classList.remove("show");
+    hamburger.style.display = "flex";
+  });
+});
