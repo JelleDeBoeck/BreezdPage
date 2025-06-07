@@ -72,10 +72,9 @@ header {
   flex-direction: column;
   gap: 5px;
   cursor: pointer;
-  position: absolute;       /* Zorgt ervoor dat het op een vaste plek blijft */
-  top: 1.5rem;              /* Afstand tot de bovenkant */
-  right: 1.5rem;            /* Afstand tot de rechterkant */
-  z-index: 1001;            /* Hoger dan .mobile-nav (999) */
+  margin-top: 18px;
+  justify-content: center;
+  height: 100%;
 }
 
 .nav-container {
@@ -157,6 +156,7 @@ header {
   font-size: 3rem;
   color: var(--primary-color);
   cursor: pointer;
+  margin-top: 18px;
 }
 
 .mobile-nav-links {
@@ -174,6 +174,18 @@ header {
   color: var(--text-color);
   text-decoration: none;
   font-weight: normal;
+}
+
+.mobile-nav-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+.mobile-nav-buttons .nav-button {
+  width: 80%;
+  max-width: 300px;
 }
 
 @media (max-width: 768px) {

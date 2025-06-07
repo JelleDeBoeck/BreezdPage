@@ -29,7 +29,6 @@
   cursor: pointer;
 }
 
-/* Herbruikbare stijlen van contactformulier overnemen indien nodig */
 .contact-form input[type="text"],
 .contact-form input[type="email"],
 .contact-form input[type="password"],

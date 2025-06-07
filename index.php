@@ -133,8 +133,10 @@
         <a href="#contact" class="mobile-scroll">Contact</a>
       </nav>
         <?php if (!isset($_SESSION['user_id'])): ?>
-          <a href="#" class="nav-button" onclick="openPopup('loginPopup')">Inloggen</a>
-          <a href="#" class="nav-button" onclick="openPopup('registerPopup')">Registreren</a>
+          <div class="mobile-nav-buttons">
+            <a href="#" class="nav-button" onclick="openPopup('loginPopup')">Inloggen</a>
+            <a href="#" class="nav-button" onclick="openPopup('registerPopup')">Registreren</a>
+          </div>
         <?php endif; ?>
     </div>
   </header>
