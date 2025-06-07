@@ -17,16 +17,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if (password_verify($password, $hash)) {
             $_SESSION["user_id"] = $user_id;
             $_SESSION["first_name"] = $first_name;
-            header("Location: ../index.php");
+            header("Location: ../index.php?message=login_success");
             exit();
         } else {
-            echo "Fout: verkeerd wachtwoord.";
+            header("Location: ../index.php?message=login_failed");
+            exit();
         }
     } else {
-        echo "Fout: gebruiker niet gevonden.";
+        header("Location: ../index.php?message=login_failed");
+        exit();
     }
 } else {
     http_response_code(405);
     echo "Alleen POST-verzoeken zijn toegestaan.";
 }
-?>

@@ -8,18 +8,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // Controleer of het e-mailadres al bestaat
     $check = $conn->prepare("SELECT id FROM users WHERE email = ?");
     $check->bind_param("s", $email);
     $check->execute();
     $check->store_result();
 
     if ($check->num_rows > 0) {
-        echo "E-mailadres is al geregistreerd.";
-        exit;
+        header("Location: ../index.php?message=register_failed");
+        exit();
     }
 
-    // Voeg gebruiker toe met geldige birth_date
     $hashed = password_hash($password, PASSWORD_DEFAULT);
     $birth_date = $_POST['birth_date'];
 
@@ -29,13 +27,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     if ($stmt->execute()) {
         $_SESSION["user_id"] = $stmt->insert_id;
         $_SESSION["first_name"] = $first;
-        header("Location: ../index.php");
+        header("Location: ../index.php?message=register_success");
         exit();
     } else {
-        echo "Fout bij registratie: " . $stmt->error;
+        header("Location: ../index.php?message=register_failed");
+        exit();
     }
 } else {
     http_response_code(405);
     echo "Alleen POST-verzoeken zijn toegestaan.";
 }
-?>

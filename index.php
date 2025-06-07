@@ -43,15 +43,52 @@
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MK6GXCJB" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 
+  <?php
+  if (isset($_GET['message'])) {
+    $message = $_GET['message'];
+
+    $messages = [
+      "success" => ["Bericht succesvol verzonden", "#29A86E"],
+      "error" => ["Er is iets fout gegaan. Probeer opnieuw.", "red"],
+      "login_success" => ["Je bent succesvol ingelogd.", "#29A86E"],
+      "login_failed" => ["Inloggen mislukt. Probeer opnieuw.", "red"],
+      "register_success" => ["Account succesvol aangemaakt.", "#29A86E"],
+      "register_failed" => ["Registratie mislukt. Probeer opnieuw.", "red"],
+      "logout_success" => ["Je bent succesvol uitgelogd.", "#29A86E"],
+      "account_deleted" => ["Je account is succesvol verwijderd.", "#29A86E"]
+    ];
+
+    if (array_key_exists($message, $messages)) {
+      [$text, $color] = $messages[$message];
+      echo "<div id='notification-message' class='notification' style='padding: 10px; background: #f4f4f4; border-left: 5px solid $color; margin: 10px auto; max-width: 600px; font-weight: 500; text-align: center;'>$text</div>";
+    }
+  }
+  ?>
+
   <?php if (isset($_SESSION['user_id'])): ?>
-    <div class="user-status" style="position: fixed; top: 10px; right: 10px; background: #f4f4f4; padding: 10px; border-radius: 6px; z-index:9999;">
-      Ingelogd als <strong><?php echo htmlspecialchars($_SESSION['first_name']); ?></strong>
-      <form action="php/logout.php" method="post" style="display:inline; margin-left:10px;">
-        <button type="submit" style="background:none;border:none;color:blue;cursor:pointer;">Uitloggen</button>
-      </form>
-      <form action="php/delete_account.php" method="post" style="display:inline; margin-left:10px;" onsubmit="return confirm('Ben je zeker dat je je account permanent wil verwijderen?');">
-        <button type="submit" style="background:none;border:none;color:red;cursor:pointer;">Account verwijderen</button>
-      </form>
+    <div style="
+      width: 100%;
+      background: #29A86E;
+      color: #f0f0f0;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    ">
+      <div>Ingelogd als <strong><?php echo htmlspecialchars($_SESSION['first_name']); ?></strong></div>
+      <div style="display: flex; gap: 20px;">
+        <form action="php/logout.php" method="post" style="margin: 0;">
+          <button type="submit" style="background: none; border: none; color: #f0f0f0; cursor: pointer; font-weight: 500; text-decoration: underline;">Uitloggen</button>
+        </form>
+        <form action="php/delete_account.php" method="post" onsubmit="return confirm('Ben je zeker dat je je account permanent wil verwijderen?');" style="margin: 0;">
+          <button type="submit" style="background: none; border: none; color: #f0f0f0; cursor: pointer; font-weight: 500; text-decoration: underline;">Account verwijderen</button>
+        </form>
+      </div>
     </div>
   <?php endif; ?>
 
@@ -90,16 +127,15 @@
         <span id="closeNav" class="close">&times;</span>
       </div>
       <nav class="mobile-nav-links">
-        <a href="#">Home</a>
-        <a href="#">Werking</a>
-        <a href="#">Tarieven</a>
-        <a href="#">Contact</a>
+        <a href="#header" class="mobile-scroll">Home</a>
+        <a href="#werking" class="mobile-scroll">Werking</a>
+        <a href="#pricing" class="mobile-scroll">Tarieven</a>
+        <a href="#contact" class="mobile-scroll">Contact</a>
       </nav>
-<?php if (!isset($_SESSION['user_id'])): ?>
-  <a href="#" class="nav-button" onclick="openPopup('loginPopup')">Inloggen</a>
-  <a href="#" class="nav-button" onclick="openPopup('registerPopup')">Registreren</a>
-<?php endif; ?>
-
+        <?php if (!isset($_SESSION['user_id'])): ?>
+          <a href="#" class="nav-button" onclick="openPopup('loginPopup')">Inloggen</a>
+          <a href="#" class="nav-button" onclick="openPopup('registerPopup')">Registreren</a>
+        <?php endif; ?>
     </div>
   </header>
 
@@ -113,14 +149,19 @@
         </div>
         <div class="header-buttons">
           <div class="header-btn">
-            <a href="#" aria-label="Download op de Apple Store"><i class='bx bxl-apple'></i></a></a>
+            <a href="downloads/Breezd app.apk" download aria-label="Download de Breezd Android app (.apk)">
+              <i class='bx bxl-apple'></i>
+            </a>
             <div class="apple-btn-text">
               <p>Download on the</p>
               <h3>Apple Store</h3>
             </div>
           </div>
+
           <div class="header-btn">
-            <a href="#" aria-label="Download op de Android Store" ><i class='bx bxl-play-store'></i></a>
+            <a href="downloads/Breezd app.apk" download aria-label="Download de Breezd Android app (.apk)">
+              <i class='bx bxl-play-store'></i>
+            </a>
             <div class="playstore-btn-text">
               <p>GET IT ON</p>
               <h3>Google Play</h3>
@@ -245,7 +286,7 @@
         <p>Heb je een vraag of feedback? Vul het formulier in en we nemen snel contact op.</p>
       </div>
   
-      <form action="#" method="post" class="contact-form">
+      <form action="php/send_mail.php" method="post" class="contact-form">
         <div class="form-row">
           <div class="form-group">
             <label for="first-name">Voornaam</label>
@@ -277,8 +318,12 @@
       <h2>Klaar voor je vape-vrije avontuur?</h2>
       <p>Download de Breezd-app en zet vandaag de eerste stap naar een gezonder leven.</p>
       <div class="store-buttons">
-        <a href="#"><i class='bx bxl-apple'></i>App Store</a></a>
-        <a href="#"><i class='bx bxl-play-store' ></i>Play Store</a></a>
+        <a href="downloads/Breezd app.apk" download aria-label="Download Breezd voor Android (.apk)">
+          <i class='bx bxl-apple'></i>App Store
+        </a>
+        <a href="downloads/Breezd app.apk" download aria-label="Download Breezd voor Android (.apk)">
+          <i class='bx bxl-play-store'></i>Play Store
+        </a>
       </div>
     </div>
   </section>
@@ -312,7 +357,7 @@
         <div class="footer-column">
           <h4>Juridisch</h4>
           <ul>
-            <li><a href="#">Privacybeleid</a></li>
+            <li><a href="privacy_policy.html">Privacybeleid</a></li>
             <li><a href="#">Algemene Voorwaarden</a></li>
             <li><a href="#">Cookiebeleid</a></li>
           </ul>
@@ -330,13 +375,51 @@
     </div>
   </footer>
 
-  <!-- Login/Register Popups -->
   <div id="login-register-placeholder"></div>
   <script>
     fetch('login_register.html')
       .then(res => res.text())
       .then(data => document.getElementById('login-register-placeholder').innerHTML = data);
   </script>
+
+  <script>
+    document.querySelectorAll('.mobile-scroll').forEach(link => {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const target = document.querySelector(targetId);
+
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        document.getElementById('mobileNav').style.display = 'none';
+      });
+    });
+
+    document.getElementById('hamburger').addEventListener('click', () => {
+      document.getElementById('mobileNav').style.display = 'block';
+    });
+
+    document.getElementById('closeNav').addEventListener('click', () => {
+      document.getElementById('mobileNav').style.display = 'none';
+    });
+  </script>
+
+  <script>
+    const notification = document.getElementById('notification-message');
+    if (notification) {
+      setTimeout(() => {
+        notification.style.transition = 'opacity 0.5s ease';
+        notification.style.opacity = '0';
+        setTimeout(() => {
+          notification.remove();
+        }, 500);
+      }, 2000);
+    }
+  </script>
+
+
 
   <script src="js/popup.js"></script>
   <script src="js/script.js"></script>
