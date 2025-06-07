@@ -170,7 +170,7 @@
       </div>
       </div>
       <div class="header-image">
-        <img src="images/headerimage.png" alt="Header Image" fetchpriority="high" loading="eager">
+        <img src="images/HeaderImg.webp" alt="Header Image" fetchpriority="high" loading="eager">
       </div>
     </div>
   </section>
@@ -205,7 +205,7 @@
     <div class="features-container">
       <div class="feature">
           <div class="feature-image">
-            <img src="images/instructie3.png" alt="Image Of Progress Screen">
+            <img src="images/Instructie1Img.webp" alt="Image Of Progress Screen">
           </div>
           <div class="feature-text">
             <h2>Houd je vooruitgang in de gaten</h2>
@@ -215,7 +215,7 @@
       </div>
       <div class="feature">
           <div class="feature-image">
-            <img src="images/instructie2.png" alt="Image Of Friends Screen">
+            <img src="images/Instructie2Img.webp" alt="Image Of Friends Screen">
           </div>
           <div class="feature-text">
             <h2>Daag je vrienden uit</h2>
@@ -225,7 +225,7 @@
       </div>
       <div class="feature">
           <div class="feature-image">
-            <img src="images/instructie3 (1).png" alt="Image Of Tracking Screen">
+            <img src="images/Instructie3Img.webp" alt="Image Of Tracking Screen">
           </div>
           <div class="feature-text">
             <h2>Track je dagelijkse aantal puffs</h2>
